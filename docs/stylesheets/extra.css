@@ -1,0 +1,230 @@
+/* BlockBorn wiki theme: chalk on slate, the same palette the game's UI is drawn in
+   (src/ReplicatedFirst/InkTheme.luau). Change a colour here and it changes everywhere. */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono&display=swap");
+
+:root {
+  --bb-deep: #0f1622;   /* recessed wells */
+  --bb-fill: #1c283a;   /* panel body */
+  --bb-tile: #202e42;   /* button / slot face */
+  --bb-line: #eef3f8;   /* the chalk */
+  --bb-soft: #8fa3b8;   /* chalk running out */
+  --bb-text: #e6edf5;
+  --bb-dim:  #9fb0c2;
+  --bb-good: #9be38a;   /* accent */
+  --bb-bad:  #ff7a6b;
+  --bb-gold: #ffd36b;
+  --bb-hand: "Patrick Hand", "Comic Sans MS", cursive;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--bb-deep);
+  --md-default-fg-color: var(--bb-text);
+  --md-default-fg-color--light: var(--bb-dim);
+  --md-default-fg-color--lighter: var(--bb-soft);
+  --md-default-fg-color--lightest: #2b3b52;
+  --md-primary-fg-color: var(--bb-fill);
+  --md-primary-bg-color: var(--bb-line);
+  --md-accent-fg-color: var(--bb-good);
+  --md-typeset-color: var(--bb-text);
+  --md-typeset-a-color: var(--bb-good);
+  --md-code-bg-color: var(--bb-fill);
+  --md-code-fg-color: var(--bb-text);
+  --md-footer-bg-color: var(--bb-fill);
+  --md-footer-bg-color--dark: var(--bb-deep);
+  --md-text-font: "Nunito";
+  --md-code-font: "JetBrains Mono";
+}
+
+body {
+  font-family: "Nunito", system-ui, sans-serif;
+  /* faint chalk grid, like a slate board */
+  background:
+    linear-gradient(rgba(238,243,248,.025) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, rgba(238,243,248,.025) 1px, transparent 1px) 0 0 / 32px 32px,
+    var(--bb-deep);
+}
+.md-main, .md-container { background: transparent; }
+
+/* ---------- Header & tabs ---------- */
+.md-header, .md-tabs {
+  background: color-mix(in srgb, var(--bb-fill) 92%, transparent);
+  backdrop-filter: blur(8px);
+}
+.md-header { border-bottom: 2px solid rgba(238,243,248,.12); box-shadow: none; }
+.md-header__topic:first-child, .md-tabs__link, .md-nav__title {
+  font-family: var(--bb-hand);
+  letter-spacing: .02em;
+}
+.md-header__topic:first-child { font-size: 1.15rem; font-weight: 400; }
+.md-tabs__link { font-size: .95rem; opacity: .75; }
+.md-tabs__link--active, .md-tabs__link:hover { color: var(--bb-good); opacity: 1; }
+.md-header__button.md-logo img { height: 1.7rem; }
+
+/* ---------- Typography ---------- */
+.md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4 {
+  font-family: var(--bb-hand);
+  color: var(--bb-line);
+  font-weight: 400;
+  letter-spacing: .01em;
+}
+.md-typeset h1 { font-size: 2.6em; margin-bottom: .6em; }
+.md-typeset h2 {
+  font-size: 1.8em;
+  padding-bottom: .2em;
+  border-bottom: 2px dashed rgba(238,243,248,.18);
+}
+.md-typeset h3 { font-size: 1.4em; color: var(--bb-good); }
+.md-typeset a { text-underline-offset: 3px; }
+.md-typeset a:hover { color: var(--bb-gold); }
+.md-typeset hr { border-bottom: 2px dashed rgba(238,243,248,.15); }
+.md-typeset kbd {
+  background: var(--bb-tile); color: var(--bb-line);
+  box-shadow: 0 2px 0 var(--bb-deep), 0 0 0 1px rgba(238,243,248,.25) inset;
+}
+
+/* ---------- Content panel: a slate board with a chalk edge ---------- */
+.md-content__inner {
+  background: color-mix(in srgb, var(--bb-fill) 70%, transparent);
+  border: 2px solid rgba(238,243,248,.10);
+  border-radius: 14px;
+  padding: 1.4rem 1.8rem 2rem;
+  margin-top: 1.2rem;
+}
+@media (max-width: 44.98em) {
+  .md-content__inner { border-radius: 0; border-left: 0; border-right: 0; padding: 1rem; margin: 0; }
+}
+.md-content__inner::before { display: none; }
+
+/* sidebars */
+.md-nav__link { border-radius: 6px; }
+.md-nav__item .md-nav__link--active { color: var(--bb-good); font-weight: 700; }
+.md-nav__link:hover { color: var(--bb-gold); }
+.md-nav--secondary .md-nav__title { background: transparent; box-shadow: none; }
+
+/* ---------- Tables look like inventory panels ---------- */
+.md-typeset table:not([class]) {
+  background: var(--bb-tile);
+  border: 2px solid rgba(238,243,248,.14);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: .8rem;
+}
+.md-typeset table:not([class]) th {
+  background: var(--bb-deep);
+  font-family: var(--bb-hand);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--bb-line);
+}
+.md-typeset table:not([class]) td { border-top: 1px solid rgba(238,243,248,.08); }
+.md-typeset table:not([class]) tbody tr:hover { background: rgba(155,227,138,.06); }
+
+/* ---------- Callouts ---------- */
+.md-typeset .admonition, .md-typeset details {
+  background: var(--bb-tile);
+  border: 2px solid rgba(238,243,248,.14);
+  border-left-width: 6px;
+  border-radius: 10px;
+  font-size: .78rem;
+  box-shadow: none;
+}
+.md-typeset .admonition-title, .md-typeset summary {
+  font-family: var(--bb-hand); font-size: 1.05rem; font-weight: 400;
+  background: transparent !important;
+}
+.md-typeset .admonition, .md-typeset details { border-color: rgba(238,243,248,.14); }
+.md-typeset .note    { border-left-color: var(--bb-line); }
+.md-typeset .note > .admonition-title::before { background-color: var(--bb-line); }
+.md-typeset .tip     { border-left-color: var(--bb-good); }
+.md-typeset .warning { border-left-color: var(--bb-gold); }
+.md-typeset .danger  { border-left-color: var(--bb-bad); }
+
+/* ---------- Pills: :tag: style labels you can use in pages ---------- */
+.md-typeset .pill {
+  display: inline-block; padding: .05em .6em; border-radius: 99px;
+  font-size: .75em; font-weight: 800; letter-spacing: .03em;
+  background: var(--bb-deep); border: 1px solid rgba(238,243,248,.2); color: var(--bb-line);
+}
+.md-typeset .pill.era   { color: var(--bb-good); border-color: rgba(155,227,138,.45); }
+.md-typeset .pill.gold  { color: var(--bb-gold); border-color: rgba(255,211,107,.45); }
+.md-typeset .stars { color: var(--bb-gold); letter-spacing: .1em; white-space: nowrap; }
+
+/* ---------- Card grids (use <div class="grid cards" markdown> in a page) ---------- */
+.md-typeset .grid.cards > ul > li, .md-typeset .grid > .card {
+  background: var(--bb-tile);
+  border: 2px solid rgba(238,243,248,.14);
+  border-radius: 12px;
+  transition: transform .15s ease, border-color .15s ease;
+}
+.md-typeset .grid.cards > ul > li:hover, .md-typeset .grid > .card:hover {
+  border-color: var(--bb-good);
+  transform: translateY(-3px);
+  box-shadow: none;
+}
+.md-typeset .grid.cards > ul > li > p:first-child strong, .md-typeset .grid.cards .lg {
+  font-family: var(--bb-hand); font-size: 1.15rem; font-weight: 400; color: var(--bb-line);
+}
+
+/* ---------- Home page hero ---------- */
+.bb-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 5.5rem 1.2rem 6.5rem;
+  text-align: center;
+  border-bottom: 2px solid rgba(238,243,248,.10);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(155,227,138,.16), transparent 60%),
+    linear-gradient(180deg, var(--bb-fill), var(--bb-deep));
+}
+.bb-hero__blocks { position: absolute; inset: 0; pointer-events: none; }
+.bb-hero__blocks span {
+  position: absolute; width: 64px; height: 64px;
+  background-size: cover; image-rendering: pixelated;
+  border: 2px solid rgba(238,243,248,.5); border-radius: 6px;
+  opacity: .35;
+  animation: bb-float 9s ease-in-out infinite;
+}
+.bb-hero__blocks span:nth-child(1) { left: 8%;  top: 22%; background-image: url("../assets/textures/OakPlanks.png"); transform: rotate(-12deg); }
+.bb-hero__blocks span:nth-child(2) { left: 18%; top: 66%; width: 44px; height: 44px; background-image: url("../assets/textures/DuskwoodPlanks.png"); animation-delay: -3s; }
+.bb-hero__blocks span:nth-child(3) { right: 9%; top: 18%; width: 52px; height: 52px; background-image: url("../assets/textures/RedwoodPlanks.png"); animation-delay: -5s; }
+.bb-hero__blocks span:nth-child(4) { right: 17%; top: 62%; background-image: url("../assets/textures/OakLog_top.png"); animation-delay: -1.5s; }
+.bb-hero__blocks span:nth-child(5) { left: 33%; top: 12%; width: 36px; height: 36px; background-image: url("../assets/textures/BirchPlanks.png"); animation-delay: -7s; }
+@keyframes bb-float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -14px; }
+}
+@media (prefers-reduced-motion: reduce) { .bb-hero__blocks span { animation: none; } }
+@media (max-width: 44.98em) {
+  .bb-hero__blocks span { opacity: .18; }
+  .bb-hero__blocks span:nth-child(2), .bb-hero__blocks span:nth-child(4), .bb-hero__blocks span:nth-child(5) { display: none; }
+  .bb-hero { padding: 3.5rem 1rem 4rem; }
+}
+
+.bb-hero__logo { width: 112px; height: 112px; filter: drop-shadow(0 10px 24px rgba(0,0,0,.45)); animation: bb-float 6s ease-in-out infinite; }
+.bb-hero h1 {
+  font-family: var(--bb-hand); font-weight: 400;
+  font-size: clamp(3rem, 9vw, 5.4rem); line-height: 1; margin: .9rem 0 .4rem;
+  color: var(--bb-line);
+  text-shadow: 0 4px 0 rgba(0,0,0,.35);
+}
+.bb-hero p { font-size: 1.1rem; color: var(--bb-dim); max-width: 34rem; margin: 0 auto 2rem; }
+.bb-hero__buttons { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+.bb-btn {
+  display: inline-flex; align-items: center; gap: .4em;
+  font-family: var(--bb-hand); font-size: 1.25rem;
+  padding: .45em 1.3em; border-radius: 10px;
+  border: 2px solid var(--bb-line); color: var(--bb-line);
+  background: var(--bb-tile);
+  box-shadow: 0 4px 0 #070b12;
+  transition: transform .1s ease, box-shadow .1s ease, background .15s;
+}
+.bb-btn:hover { color: var(--bb-line); transform: translateY(-2px); box-shadow: 0 6px 0 #070b12; }
+.bb-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #070b12; }
+.bb-btn--primary { background: var(--bb-good); color: #0f1622; border-color: #0f1622; }
+.bb-btn--primary:hover { color: #0f1622; background: #b2f0a3; }
+
+/* The home page has no sidebars; let the cards breathe */
+.md-content__inner:has(.bb-home) { background: transparent; border: 0; padding-top: 0; }
+.md-content__inner:has(.bb-home) > h1 { display: none; }
+.md-content__inner:has(.bb-home) .md-typeset .grid, .md-typeset.md-content__inner:has(.bb-home) .grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.md-content__inner:has(.bb-home) { padding-top: 2rem; }

@@ -1,0 +1,22 @@
+{#- The home page: a hero banner above the normal page body.
+    Pages opt in with `template: home.html` in their front matter. -#}
+{% extends "main.html" %}
+
+{% block tabs %}
+  {{ super() }}
+  <section class="bb-hero">
+    <div class="bb-hero__blocks" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+    <img class="bb-hero__logo" src="{{ 'assets/logo.svg' | url }}" alt="">
+    <h1>BlockBorn</h1>
+    <p>{{ page.meta.tagline or config.site_description }}</p>
+    <div class="bb-hero__buttons">
+      <a class="bb-btn bb-btn--primary" href="{{ config.extra.play_url }}">&#9654; Play on Roblox</a>
+      <a class="bb-btn" href="{{ 'getting-started/' | url }}">Start here</a>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+  <div class="bb-home"></div>
+  {{ super() }}
+{% endblock %}
