@@ -1,6 +1,6 @@
 site_name: BlockBorn Wiki
 site_description: The official guide to BlockBorn, a Roblox game of islands, eras and the things you build on them.
-# Your Pages address. Change it if you rename the repo or add a custom domain.
+# Your Pages address (the free github.io one). Change it if you rename the repo.
 site_url: https://boycham.github.io/Blockborn-wiki/
 repo_url: https://github.com/Boycham/Blockborn-wiki
 edit_uri: edit/main/docs/
@@ -37,7 +37,7 @@ theme:
 
 extra:
   # The PLAY button on the home page. Paste your game's Roblox link here.
-  play_url: https://www.roblox.com/
+  play_url: https://www.roblox.com/games/138165659444703/BlockBorn
   generator: false
 
 extra_css:
